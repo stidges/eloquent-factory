@@ -1,0 +1,27 @@
+{
+    "name": "stidges/eloquent-factory",
+    "description": "Laravel 5 model factories extracted into separate package",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Stidges",
+            "email": "info@stidges.com"
+        }
+    ],
+    "require": {
+        "php": ">= 5.6.0",
+        "fzaninotto/faker": "~1.4",
+        "illuminate/support": "~4.0|~5.0"
+    },
+    "require-dev": {
+        "illuminate/database": "~4.0|~5.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Stidges\\EloquentFactory\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    }
+}
