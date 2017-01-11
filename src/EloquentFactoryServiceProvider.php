@@ -8,8 +8,18 @@ use Faker\Generator as FakerGenerator;
 
 class EloquentFactoryServiceProvider extends ServiceProvider
 {
+    /**
+     * Indicates if loading of the provider is deferred.
+     *
+     * @var bool
+     */
     protected $defer = true;
 
+    /**
+     * Boot the service provider.
+     *
+     * @return void
+     */
     public function boot()
     {
         if (method_exists($this, 'package')) {
@@ -21,14 +31,18 @@ class EloquentFactoryServiceProvider extends ServiceProvider
         }
     }
 
+    /**
+     * Register the service provider.
+     *
+     * @return void
+     */
     public function register()
     {
         if (method_exists($this, 'mergeConfigFrom')) {
             $this->mergeConfigFrom(__DIR__.'/config/config.php', 'eloquent-factory');
         }
 
-        if (!$this->app->bound(FakerGenerator::class))
-        {
+        if (!$this->app->bound(FakerGenerator::class)) {
             $this->app->singleton(FakerGenerator::class, function() {
                 return FakerFactory::create();
             });
@@ -43,6 +57,11 @@ class EloquentFactoryServiceProvider extends ServiceProvider
         });
     }
 
+    /**
+     * Get the services provided by the provider.
+     *
+     * @return array
+     */
     public function provides()
     {
         return [Factory::class];
